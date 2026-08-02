@@ -1,6 +1,6 @@
 from aiogram import Router, types, F
 from aiogram.filters import Command
-from telegram_bot.config import ADMIN_ID
+from config import ADMIN_ID
 
 
 router = Router()
