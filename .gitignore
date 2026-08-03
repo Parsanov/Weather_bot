@@ -1,20 +1,11 @@
-# Секрети
 .env
 **/.env
-
-# Бази даних
 *.db
 *.sqlite
 *.sqlite3
-
-# Python
 __pycache__/
 **/__pycache__/
 *.pyc
 .venv/
-
-# Локальні дані (більше не актуально, якщо перейшов на БД)
 user_data.json
-
-# IDE
 .idea/

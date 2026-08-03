@@ -1,0 +1,18 @@
+services:
+  weather_api:
+    build: ./weather_api
+    env_file:
+      - ./weather_api/.env
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+
+  telegram_bot:
+    build: ./telegram_bot
+    env_file:
+      - ./telegram_bot/.env
+    depends_on:
+      - weather_api
+    volumes:
+      - ./telegram_bot/user_data.json:/app/user_data.json
+    restart: unless-stopped

@@ -2,7 +2,7 @@ from aiogram import Router, types, F
 from aiogram.filters import CommandStart
 from keyboards.reply import geo_keyboard
 from keyboards.inline import user_redirection_kb
-import json
+from DB.repository import add_user
 
 
 router = Router()
@@ -21,17 +21,11 @@ async def handle_location(message: types.Message):
     user_id = message.from_user.id
     user_name = message.from_user.first_name
 
-    await message.answer("📒 Записую твою геолокацію", reply_markup=user_redirection_kb())
+    await message.answer("📒 Записую твою геолокацію")
 
-    data = {
-        "lat": lat,
-        "lon": lon,
-        "user_id": user_id,
-        "user_name": user_name
-    }
+    await add_user(user_id, user_name, lat, lon)
 
-    with open("user_data.json", "w") as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+    await message.answer("Твоя геолокація успішно записана", reply_markup=user_redirection_kb())
 
 
 

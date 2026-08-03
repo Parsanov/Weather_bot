@@ -1,6 +1,8 @@
 import asyncio
 import logging
 from aiogram import Bot, Dispatcher
+
+from DB.dp import init_db
 from config import BOT_TOKEN
 from handlers import start_handler
 
@@ -9,6 +11,8 @@ from handlers import start_handler
 async def main():
     logging.basicConfig(level=logging.INFO,
                         format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+
+    await init_db()
 
     bot = Bot(token=BOT_TOKEN)
     dp = Dispatcher()
